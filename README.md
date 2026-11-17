@@ -110,19 +110,10 @@ Top recommendations:
       - 
 ```
 
-**Screenshot or video** *(optional)*: <!-- Insert a screenshot or demo video link here -->
-
----
-
-## Experiments You Tried
-
 ## Experiments You Tried
 
 I tested four user profiles and looked at the top 5 results for each.
 
-### High-Energy Pop
-
-```
 === High-Energy Pop ===
 1. Sunrise City by Neon Echo
    Score: 6.83
@@ -178,7 +169,6 @@ Observation: Sunrise City and Gym Hero lead, which matches what I expected. Posi
 
 ### Chill Lofi
 
-```
 === Chill Lofi ===
 1. Library Rain by Paper Lanterns
    Score: 7.03
@@ -230,13 +220,11 @@ Observation: Sunrise City and Gym Hero lead, which matches what I expected. Posi
       - acousticness close to target (+0.73)
       - danceability close to target (+0.47)
       - tempo close to target (+0.26)
-```
 
 Observation: The three lofi songs take the top three, and Library Rain edges out Midnight Coding on closeness alone.
 
 ### Deep Intense Rock
 
-```
 === Deep Intense Rock ===
 1. Storm Runner by Voltline
    Score: 7.04
@@ -286,13 +274,11 @@ Observation: The three lofi songs take the top three, and Library Rain edges out
       - acousticness close to target (+0.78)
       - danceability close to target (+0.42)
       - tempo close to target (+0.29)
-```
 
 Observation: Storm Runner wins by a wide margin. Heaven ranks second just for being rock, even though its mood is romantic.
 
 ### Indie Pop Romantic
 
-```
 === Indie Pop Romantic ===
 1. Stupid Song by Olivia Rodrigo
    Score: 5.65
@@ -341,13 +327,14 @@ Observation: Storm Runner wins by a wide margin. Heaven ranks second just for be
       - acousticness close to target (+0.69)
       - danceability close to target (+0.49)
       - tempo close to target (+0.28)
-```
 
 Observation: Stupid Song (melancholic) beats Heaven, the only romantic song, because the genre bonus is worth twice the mood bonus.
+---
 
 ### Bug I found while testing
 
 My first run only scored genre and mood. Every score was a whole number and no energy line appeared, because `score_song` was reading different key names than my profiles used (e.g. `energy` vs. `target_energy`). I fixed the keys and reran, and the results above are from the fixed version.
+---
 
 ### Does it match my intuition?
 
@@ -383,11 +370,9 @@ but the rankings did not change, so these features act as tie-breakers.
 
 Overall this made the results different, not clearly more accurate. It helped Rock, where Heaven's romantic mood didn't fit "intense," but it didn't fix Indie Pop Romantic. Lowering the genre weight alone worked better for that profile. The scores are on a different scale after the change (max 7.6 instead of 7.1), so only rankings can be compared.
 
+---
+
 ## Reflection
-
-Read and complete `model_card.md`:
-
-[**Model Card**](model_card.md)
 
 My biggest learning moment was realizing that a recommender does not need a fancy model to feel personal. A simple score can still feel convincing because it gives a lot of weight to a few obvious signals like genre and mood. That was the big idea for me: a recommender is basically a system that turns a bunch of song features and user preferences into a ranking. It is not magic — it is just a way of deciding what counts as a good match.
 
@@ -396,6 +381,3 @@ I also learned that bias can sneak in really easily. In this project, exact genr
 Using AI tools helped a lot because they helped me test ideas quickly and debug the scoring logic. I could try different weights and see the output immediately, which made it much easier to understand what was happening. But I still had to double-check the math and the actual code, because the AI could suggest a version that looked reasonable even when it did not fully match the project rules or the dataset. I had to check whether the model was really using the right fields, and whether the ranking made sense for real listeners.
 
 If I extended this project, I would try a more balanced scoring system so genre does not dominate everything. I would also add diversity controls so the top songs do not all come from the same style. I would want to test more realistic user profiles, like “happy but low energy,” or “romantic but upbeat,” and I would also want to build a better explanation system so the app can tell the user why a song was chosen in simple language.
-
-
-
